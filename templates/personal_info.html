@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-    <h4><a href="/">Main</a></h4>
+    <div class="jumbotron">
     <ul>
-    {% for key, value in personal_info.return.funds.items() %}
-        <li><h4>{{ key }} - {{ value }}</h4></li>
-    {% endfor %}
+        {% for key, value in personal_info.return.funds.items() %}
+            {% if value > 0 %}
+                        <li><h4>{{ key }} - {{ value }}</h4><a href="/convert?pair={{ key }}&val={{ value }}">In RUR</a></li>
+            {% endif %}
+        {% endfor %}
     </ul>
+    </div>
 {% endblock %}
