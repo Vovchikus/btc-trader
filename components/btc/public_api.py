@@ -1,17 +1,17 @@
 import httplib
 import json
-import urllib
+
+from components.btc.btc import BtcApi
 
 
 class BtcPublicApi:
-    BTC_DOMAIN = 'btc-e.nz'
     API_SLUG = '/api/3'
 
     def __init__(self):
         pass
 
     def __api_call(self, params_slug):
-        conn = httplib.HTTPSConnection(self.BTC_DOMAIN)
+        conn = httplib.HTTPSConnection(BtcApi.BTC_DOMAIN)
         conn.request('GET', self.API_SLUG + '/' + params_slug)
         response = conn.getresponse()
         data = json.load(response)

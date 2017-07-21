@@ -2,3 +2,4 @@
 nbproject
 *.pyc
 *.json
+*.conf

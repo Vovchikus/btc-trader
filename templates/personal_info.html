@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h4><a href="/">Main</a></h4>
+    <ul>
+    {% for key, value in personal_info.return.funds.items() %}
+        <li><h4>{{ key }} - {{ value }}</h4></li>
+    {% endfor %}
+    </ul>
+{% endblock %}
