@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        {% for key, value in transactions.return.iteritems() %}
+            <h4>Item # {{ key }}</h4>
+            <ul>
+                <li>Type: {{ value.type }}</li>
+                <li>Amount: {{ value.amount }}</li>
+                <li>Currency: {{ value.currency }}</li>
+                <li>Desc: {{ value.desc }}</li>
+                <li>Status: {{ value.status }}</li>
+            </ul>
+        {% endfor %}
+    </div>
+{% endblock %}

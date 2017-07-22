@@ -39,3 +39,9 @@ class BtcTradeApi:
 
     def get_info(self):
         return self.__api_call('getInfo', {})
+
+    def trade_history(self):
+        return self.__api_call('TradeHistory', {})
+
+    def transaction_history(self):
+        return self.__api_call('TransHistory', {})

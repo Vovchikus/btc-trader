@@ -13,7 +13,7 @@ Bootstrap(app)
 def info():
     api = BtcPublicApi()
 
-    major_pairs = ['eth_rur', 'ltc_rur', 'btc_rur', 'dsh_rur']
+    major_pairs = ['ppc_usd', 'eth_rur', 'ltc_rur', 'btc_rur', 'dsh_rur']
     res = {}
 
     for p in major_pairs:
@@ -35,7 +35,7 @@ def pair():
 def personal():
     api = BtcTradeApi()
     personal_info = api.get_info()
-    return render_template("personal_info.html", personal_info=personal_info)
+    return render_template('personal_info.html', personal_info=personal_info)
 
 
 @app.route('/convert')
@@ -45,7 +45,21 @@ def convert():
     result = api.ticker_pair(rur_pair)
     sell_price = float(result[rur_pair]['sell'])
     sell_value = float(request.args.get('val'))
-    return render_template("rur_pair.html", r=sell_price * sell_value)
+    return render_template('rur_pair.html', r=sell_price * sell_value)
+
+
+@app.route('/trade_history')
+def trade_history():
+    api = BtcTradeApi()
+    history = api.trade_history()
+    return render_template('trade_history.html', history=history)
+
+
+@app.route('/transaction_history')
+def transaction_history():
+    api = BtcTradeApi()
+    transactions = api.transaction_history()
+    return render_template('transaction_history.html', transactions=transactions)
 
 
 if __name__ == '__main__':

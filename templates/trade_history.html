@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        {% for key, value in history.return.iteritems() %}
+            <h4>Item # {{ key }}</h4>
+            <ul>
+                <li>
+                    Order # {{ value.order_id }}
+                </li>
+                <li>Time: {{ value.timestamp }}</li>
+                <li>Rate: {{ value.rate }}</li>
+                <li>Amount: {{ value.amount }}</li>
+                <li>Pair: {{ value.pair }}</li>
+                <li>Type: {{ value.type }}</li>
+            </ul>
+        {% endfor %}
+    </div>
+{% endblock %}

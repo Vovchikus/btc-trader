@@ -5,6 +5,7 @@ class CurrencyPairsConverter:
     @staticmethod
     def convert(pair):
         pairs = {
+            'ppc_usd': 'PeerCoin - USD',
             'eth_rur': 'Ethereum - Ruble',
             'btc_rur': 'Bitcoin - Ruble',
             'dsh_rur': 'Dash - Ruble',
