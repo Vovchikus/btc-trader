@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="jumbotron">
-    <h3>Prices</h3>
+    <h3>Pairs</h3>
         <ul>
-            {% for v in result_pairs %}
-                <div>{{ v }} - {{ result_pairs[v] }}</div>
+            {% for k, v in result.iteritems() %}
+                <div>{{ v }}</div>
             {% endfor %}
         </ul>
     </div>

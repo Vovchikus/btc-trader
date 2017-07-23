@@ -12,16 +12,14 @@ Bootstrap(app)
 @app.route('/')
 def info():
     api = BtcPublicApi()
+    inf = api.info()
+    conv = CurrencyPairsConverter()
+    pairs = {}
 
-    major_pairs = ['ppc_usd', 'eth_rur', 'ltc_rur', 'btc_rur', 'dsh_rur']
-    res = {}
+    for item in inf['pairs']:
+        pairs[item] = conv.code_pairs_to_readable(item)
 
-    for p in major_pairs:
-        tick = api.ticker_pair(p)
-        key = CurrencyPairsConverter.convert(p)
-        res[key] = tick[p]['sell']
-
-    return render_template('main.html', result_pairs=res)
+    return render_template('main.html', result=pairs)
 
 
 @app.route('/pair')
