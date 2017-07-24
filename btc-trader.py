@@ -33,7 +33,7 @@ def pair():
 def personal():
     api = BtcTradeApi()
     personal_info = api.get_info()
-    return render_template('personal_info.html', personal_info=personal_info)
+    return render_template('personal_info.html', personal_info=personal_info, codes=CurrencyPairsConverter.ASSOC)
 
 
 @app.route('/convert')

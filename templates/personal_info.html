@@ -1,12 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="jumbotron">
-    <ul>
-        {% for key, value in personal_info.return.funds.items() %}
-            {% if value > 0 %}
-                        <li><h4>{{ key }} - {{ value }}</h4><a href="/convert?pair={{ key }}&val={{ value }}">In RUR</a></li>
-            {% endif %}
-        {% endfor %}
-    </ul>
+        <ul>
+            {% for key, value in personal_info.return.funds.items() %}
+                {% if value > 0 %}
+                    <li><h4>{{ key }} - {{ value }}</h4>
+                        <text>Convert in</text>
+                        <select>
+                            <optgroup label="Convert in">
+                                {% for k, v in codes.items() %}
+                                    <option value="{{ k }}">{{ v }}</option>
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+                        <button>Convert</button>
+                        <span>Result:</span>
+                    </li>
+
+                {% endif %}
+            {% endfor %}
+        </ul>
     </div>
 {% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="../static/js/converter.js"></script>
+{% endblock scripts %}
