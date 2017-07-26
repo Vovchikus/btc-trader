@@ -5,15 +5,15 @@ BTC-e trader application
 Getting Started
 ---------------
 
-1. sudo apt-get install python
+1. apt-get install python
 
-2. sudo apt-get install python-pip (Python package manager)
+2. apt-get install python-pip (Python package manager)
 
-3. sudo pip install virtualenv
+3. pip install virtualenv
 
 4. install Flask (python lighweight web-framework, http://flask.pocoo.org/docs/0.10/installation/)
 
-5. sudo pip install flask-bootstrap
+5. pip install flask-bootstrap
 
 
 Api Settings
