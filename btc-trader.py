@@ -1,9 +1,11 @@
 from components.btc.trade_api import BtcTradeApi
 from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap
+from flask.json import jsonify
 
 from components.btc.public_api import BtcPublicApi
 from components.converter.currency_pairs import CurrencyPairsConverter
+from components.currency_calculator import CurrencyCalculator
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -39,11 +41,19 @@ def personal():
 @app.route('/convert')
 def convert():
     api = BtcPublicApi()
-    rur_pair = request.args.get('pair') + '_rur'
-    result = api.ticker_pair(rur_pair)
-    sell_price = float(result[rur_pair]['sell'])
-    sell_value = float(request.args.get('val'))
-    return render_template('rur_pair.html', r=sell_price * sell_value)
+    c_left = request.args.get('cLeft')
+    c_right = request.args.get('cRight')
+    c_pair = CurrencyPairsConverter.build_pair(c_left, c_right)
+    if c_left == c_right:
+        amount = CurrencyCalculator.EQUALS
+    else:
+        result = api.ticker_pair(c_pair)
+        if result.has_key('success') and result['success'] == 0:
+            amount = CurrencyCalculator.RESULT_UNDEFINED
+        else:
+            cc = CurrencyCalculator(result[c_pair]['sell'], request.args.get('cValue'))
+            amount = cc.calculate()
+    return jsonify({'result': amount})
 
 
 @app.route('/trade_history')

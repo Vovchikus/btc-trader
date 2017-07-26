@@ -4,17 +4,17 @@
         <ul>
             {% for key, value in personal_info.return.funds.items() %}
                 {% if value > 0 %}
-                    <li><h4>{{ key }} - {{ value }}</h4>
+                    <li><h4><span>{{ key }}</span> - <span>{{ value }}</span></h4>
                         <text>Convert in</text>
-                        <select>
+                        <select id="{{ key }}">
                             <optgroup label="Convert in">
                                 {% for k, v in codes.items() %}
                                     <option value="{{ k }}">{{ v }}</option>
                                 {% endfor %}
                             </optgroup>
                         </select>
-                        <button>Convert</button>
-                        <span>Result:</span>
+                        <button name="trigger_converter" id="{{ key }}" data-value="{{ value }}">Convert</button>
+                        <span id="{{ key }}"></span>
                     </li>
 
                 {% endif %}
