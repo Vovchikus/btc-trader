@@ -1,6 +1,6 @@
 BTC-e trader application
 ---------------
-
+_**Currently, BTC-e is closed**_
 
 Getting Started
 ---------------

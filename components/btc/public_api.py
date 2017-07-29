@@ -10,7 +10,7 @@ class BtcPublicApi:
     def __init__(self):
         pass
 
-    def __api_call(self, params_slug):
+    def _api_call(self, params_slug):
         conn = httplib.HTTPSConnection(BtcApi.BTC_DOMAIN)
         conn.request('GET', self.API_SLUG + '/' + params_slug)
         response = conn.getresponse()
@@ -19,8 +19,8 @@ class BtcPublicApi:
         return data
 
     def info(self):
-        return self.__api_call('info')
+        return self._api_call('info')
 
     def ticker_pair(self, pair):
         method_slug = 'ticker/' + pair
-        return self.__api_call(method_slug)
+        return self._api_call(method_slug)

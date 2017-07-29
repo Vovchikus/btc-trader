@@ -2,12 +2,12 @@ class CurrencyCalculator:
     EQUALS = 1.00
     RESULT_UNDEFINED = -1.00
 
-    __sell_price = 0.00
-    __sell_value = 0.00
+    _sell_price = 0.00
+    _sell_value = 0.00
 
     def __init__(self, sell_price, value):
-        self.__sell_price = float(sell_price)
-        self.__sell_value = float(value)
+        self._sell_price = float(sell_price)
+        self._sell_value = float(value)
 
     def calculate(self):
-        return self.__sell_price * self.__sell_value
+        return self._sell_price * self._sell_value
